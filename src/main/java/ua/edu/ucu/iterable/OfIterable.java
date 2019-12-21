@@ -2,6 +2,7 @@ package ua.edu.ucu.iterable;
 
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class OfIterable implements Iterable<Integer> {
 
@@ -24,7 +25,11 @@ public class OfIterable implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                return elements[i++];
+                if (hasNext()) {
+                    return elements[i++];
+                } else {
+                    throw new NoSuchElementException();
+                }
             }
         };
     }

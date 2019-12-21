@@ -3,7 +3,7 @@ import ua.edu.ucu.function.IntUnaryOperator;
 
 import java.util.Iterator;
 
-public class MapIterable implements Iterable<Integer>{
+public class MapIterable implements Iterable<Integer> {
     private Iterable<Integer> iterable;
     private IntUnaryOperator mapper;
 
@@ -19,7 +19,7 @@ public class MapIterable implements Iterable<Integer>{
     }
 
     private class MapIterator implements Iterator<Integer> {
-        Iterator<Integer> parent = iterable.iterator();
+        private Iterator<Integer> parent = iterable.iterator();
         private Integer nextVal;
 
         @Override

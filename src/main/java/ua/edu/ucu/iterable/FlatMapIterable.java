@@ -9,7 +9,8 @@ public class FlatMapIterable implements Iterable<Integer> {
     private Iterable<Integer> iterable;
     private IntToIntStreamFunction func;
 
-    public FlatMapIterable(Iterable<Integer> iterable, IntToIntStreamFunction func) {
+    public FlatMapIterable(Iterable<Integer> iterable,
+                           IntToIntStreamFunction func) {
         this.iterable = iterable;
         this.func = func;
     }
@@ -20,8 +21,8 @@ public class FlatMapIterable implements Iterable<Integer> {
     }
 
     private class FlatMapIterator implements Iterator<Integer> {
-        Iterator<Integer> parent = iterable.iterator();
-        Iterator<Integer> tempIter;
+        private Iterator<Integer> parent = iterable.iterator();
+        private Iterator<Integer> tempIter;
 
         @Override
         public boolean hasNext() {
@@ -30,7 +31,8 @@ public class FlatMapIterable implements Iterable<Integer> {
             }
 
             while (parent.hasNext()) {
-                tempIter = ((AsIntStream) func.applyAsIntStream(parent.next())).iterable.iterator();
+                tempIter = ((AsIntStream) func.applyAsIntStream(
+                        parent.next())).iterable.iterator();
                 return tempIter.hasNext();
             }
             return false;

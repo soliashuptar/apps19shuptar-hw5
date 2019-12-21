@@ -51,12 +51,7 @@ public class AsIntStream implements IntStream {
 
     @Override
     public long count() {
-        int size = 0;
-
-        for (Integer i : iterable) {
-            size += 1;
-        }
-        return size;
+        return reduce(0, (sum, x) -> sum += 1);
     }
 
     @Override
