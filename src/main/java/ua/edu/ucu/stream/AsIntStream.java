@@ -6,6 +6,7 @@ import ua.edu.ucu.iterable.FlatMapIterable;
 import ua.edu.ucu.iterable.MapIterable;
 import ua.edu.ucu.iterable.OfIterable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AsIntStream implements IntStream {
@@ -29,7 +30,6 @@ public class AsIntStream implements IntStream {
     @Override
     public Integer max() {
         int maxVal = 0;
-        System.out.println(Arrays.toString(toArray()));
         for (Integer i : iterable) {
             if (i > maxVal) {
                 maxVal = i;
@@ -56,11 +56,7 @@ public class AsIntStream implements IntStream {
 
     @Override
     public Integer sum() {
-        int sumVal = 0;
-        for (Integer i : iterable) {
-            sumVal += i;
-        }
-        return sumVal;
+        return reduce(0, (sum, x) -> sum += x);
     }
 
     @Override
@@ -97,11 +93,14 @@ public class AsIntStream implements IntStream {
 
     @Override
     public int[] toArray() {
-        int[] arr = new int[(int) count()];
-        int index = 0;
-        for (Integer i : iterable) {
-            arr[index] = i;
-            index += 1;
+        ArrayList<Integer> tempIter = new ArrayList<>();
+        for (Integer i: iterable) {
+            tempIter.add(i);
+        }
+
+        int[] arr = new int[tempIter.size()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) tempIter.get(i);
         }
         return arr;
 

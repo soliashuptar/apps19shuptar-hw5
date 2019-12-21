@@ -54,7 +54,5 @@ public class FilterIterable implements Iterable<Integer> {
 //                    return nextVal;
         }
     }
-
-    ;
 }
 

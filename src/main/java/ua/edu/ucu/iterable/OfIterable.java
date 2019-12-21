@@ -10,7 +10,7 @@ public class OfIterable implements Iterable<Integer> {
 //    private int i = 0;
 
     public OfIterable(int[] elements) {
-        this.elements = elements;
+        this.elements = elements.clone();
     }
 
     @Override
@@ -34,15 +34,3 @@ public class OfIterable implements Iterable<Integer> {
         };
     }
 }
-
-//
-//    @Override
-//    public Iterator<Integer> iterator() {
-//        return new Iterable<Integer>() {
-//            @Override
-//            public Iterator<Integer> iterator() {
-//                return new OfIterator(elements);
-//            }
-//        };
-//    }
-//}

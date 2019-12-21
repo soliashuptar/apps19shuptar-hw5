@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author andrii
  */
-public class StreamAppTest {
+public class StretamAppTest {
     
     private IntStream intStream;
 
